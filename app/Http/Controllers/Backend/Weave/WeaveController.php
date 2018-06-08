@@ -69,10 +69,11 @@ class WeaveController extends Controller
      *
      * @return mixed
      */
-    public function edit(Weave $weave, EditRequest $request)
+    public function edit($id, Weave $weave, EditRequest $request)
     {
+        $weaveData = $weave->find($id);
         return view('backend.weaves.edit')
-            ->withWeave($weave);
+            ->withWeave($weaveData);
     }
 
     /**

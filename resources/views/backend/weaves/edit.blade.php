@@ -11,7 +11,7 @@
 
 @section('content')
     {{ Form::model($weave, ['route' => ['admin.weaves.update', $weave], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'PATCH', 'id' => 'edit-role', 'files' => true]) }}
-
+        {{ Form::hidden('id', $weave->id) }}
         <div class="box box-success">
             <div class="box-header with-border">
                 <h3 class="box-title">{{ trans('labels.backend.weaves.edit') }}</h3>

@@ -31,6 +31,12 @@ class MailinglistRepository extends BaseRepository
                 config('access.mailinglist_table').'.lastname',
                 config('access.mailinglist_table').'.email',
                 config('access.mailinglist_table').'.pobox',
+                config('access.mailinglist_table').'.phone',
+                config('access.mailinglist_table').'.address',
+                config('access.mailinglist_table').'.street',
+                config('access.mailinglist_table').'.city',
+                config('access.mailinglist_table').'.state',
+                config('access.mailinglist_table').'.country',
                 config('access.mailinglist_table').'.created_at',
                 config('access.mailinglist_table').'.updated_at',
             ]);

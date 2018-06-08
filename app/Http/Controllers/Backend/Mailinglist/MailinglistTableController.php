@@ -34,7 +34,32 @@ class MailinglistTableController extends Controller
     public function __invoke(ManageRequest $request)
     {
         return Datatables::of($this->mailinglists->getForDataTable())
-            ->escapeColumns(['firstname','lastname','email','pobox'])
+            ->escapeColumns(['firstname','lastname','email','pobox', 'phone'])
+            ->addColumn('address', function ($mailinglists) {
+                $data = [];
+                if(!empty($mailinglists->address))
+                {
+                    $data[] = $mailinglists->address;
+                }
+                if(!empty($mailinglists->street))
+                {
+                    $data[] = $mailinglists->street;
+                }
+                if(!empty($mailinglists->city))
+                {
+                    $data[] = $mailinglists->city;
+                }
+                if(!empty($mailinglists->state))
+                {
+                    $data[] = $mailinglists->state;
+                }
+                if(!empty($mailinglists->country))
+                {
+                    $data[] = $mailinglists->country;
+                }
+
+                return implode(" , ", $data);
+            })
             ->addColumn('created_at', function ($mailinglists) {
                 return Carbon::parse($mailinglists->created_at)->toDateString();
             })

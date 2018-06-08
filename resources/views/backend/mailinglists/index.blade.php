@@ -25,7 +25,9 @@
                             <th>{{ trans('labels.backend.mailinglists.table.firstname') }}</th>
                             <th>{{ trans('labels.backend.mailinglists.table.lastname') }}</th>
                             <th>{{ trans('labels.backend.mailinglists.table.email') }}</th>
+                            <th>{{ trans('labels.backend.mailinglists.table.address') }}</th>
                             <th>{{ trans('labels.backend.mailinglists.table.pobox') }}</th>
+                            <th>{{ trans('labels.backend.mailinglists.table.phone') }}</th>
                             <th>{{ trans('labels.backend.mailinglists.table.createdat') }}</th>
                             <th>{{ trans('labels.general.actions') }}</th>
                         </tr>
@@ -45,7 +47,15 @@
                                 <a class="reset-data" href="javascript:void(0)"><i class="fa fa-times"></i></a>
                             </th>
                             <th>
+                                {!! Form::text('address', null, ["class" => "search-input-text form-control", "data-column" => 0, "placeholder" => trans('labels.backend.mailinglists.table.address')]) !!}
+                                    <a class="reset-data" href="javascript:void(0)"><i class="fa fa-times"></i></a>
+                            </th>
+                            <th>
                                 {!! Form::text('pobox', null, ["class" => "search-input-text form-control", "data-column" => 0, "placeholder" => trans('labels.backend.mailinglists.table.pobox')]) !!}
+                                    <a class="reset-data" href="javascript:void(0)"><i class="fa fa-times"></i></a>
+                            </th>
+                            <th>
+                                {!! Form::text('phone', null, ["class" => "search-input-text form-control", "data-column" => 0, "placeholder" => trans('labels.backend.mailinglists.table.phone')]) !!}
                                     <a class="reset-data" href="javascript:void(0)"><i class="fa fa-times"></i></a>
                             </th>
                             <th></th>
@@ -88,7 +98,9 @@
                     {data: 'firstname', name: '{{config('access.mailinglist_table')}}.firstname'},
                     {data: 'lastname', name: '{{config('access.mailinglist_table')}}.lastname'},
                     {data: 'email', name: '{{config('access.mailinglist_table')}}.email'},
+                    {data: 'address', name: '{{config('access.mailinglist_table')}}.address'},
                     {data: 'pobox', name: '{{config('access.mailinglist_table')}}.pobox'},
+                    {data: 'phone', name: '{{config('access.mailinglist_table')}}.phone'},
                     {data: 'created_at', name: '{{config('access.mailinglist_table')}}.created_at'},
                     {data: 'actions', name: 'actions', searchable: false, sortable: false}
                 ],

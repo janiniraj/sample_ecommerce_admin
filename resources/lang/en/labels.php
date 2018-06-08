@@ -262,6 +262,8 @@ return [
                 'lastname'       => 'Last Name',
                 'email'          => 'Email',
                 'pobox'          => 'Zip Code',
+                'phone'          => 'Phone',
+                'address'        => 'Address',
                 'createdat'      => 'Created At',
                 'all'            => 'All',
             ],

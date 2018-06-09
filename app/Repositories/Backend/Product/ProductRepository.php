@@ -268,10 +268,7 @@ class ProductRepository extends BaseRepository
             $product->color_id = $input['color_id'];
         }
 
-        if(isset($input['border_color_id']))
-        {
-            $product->border_color_id = $input['border_color_id'];
-        }
+        $product->border_color_id = isset($input['border_color_id']) ? $input['border_color_id'] : '';
 
         if(isset($input['shape']))
         {

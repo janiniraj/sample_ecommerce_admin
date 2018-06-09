@@ -103,7 +103,7 @@
 
                 <div class="col-lg-10">
                     <?php /*{{ Form::select('border_color_id', $colorList, null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Not Applicable']) }}*/ ?>
-                    <select class="form-control" required="required" id="border_color_id" name="border_color_id">
+                    <select class="form-control" id="border_color_id" name="border_color_id">
                         <option selected="selected" value="">Not Applicable</option>
                         @foreach($colorList as $key => $value)
                             <option value="{{ $key }}" colorvalue="{{ $value }}">{{ $value }}

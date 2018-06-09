@@ -91,6 +91,39 @@ class ProductRepository extends BaseRepository
 
         unset($input['length'], $input['width']);
 
+        $basePath = public_path("product_custom_logos");
+
+        if(isset($input['custom_logo1']) && is_object($input['custom_logo1']))
+        {
+            $imageName = time().$input['custom_logo1']->getClientOriginalName();
+
+            $input['custom_logo1']->move(
+                $basePath, $imageName
+            );
+
+            $input['custom_logo1'] = $imageName;
+        }
+
+        if(isset($input['custom_logo2']) && is_object($input['custom_logo2']))
+        {
+            $imageName = time().$input['custom_logo2']->getClientOriginalName();
+
+            $input['custom_logo2']->move(
+                $basePath, $imageName
+            );
+
+            $input['custom_logo2'] = $imageName;
+        }
+
+        $input['shop'] = [
+            'amazon_link'   => isset($input['amazon_link']) ? $input['amazon_link'] : '',
+            'ebay_link'     => isset($input['ebay_link']) ? $input['ebay_link'] : '',
+            'custom_link1'  => isset($input['custom_link1']) ? $input['custom_link1'] : '',
+            'custom_logo1'  => isset($input['custom_logo1']) ? $input['custom_logo1'] : '',
+            'custom_link2'  => isset($input['custom_link2']) ? $input['custom_link2'] : '',
+            'custom_logo2'  => isset($input['custom_logo2']) ? $input['custom_logo2'] : ''
+        ];
+
         DB::transaction(function () use ($input, $sizeArray) {
             $product                    = self::MODEL;
             $product                    = new $product();
@@ -114,24 +147,7 @@ class ProductRepository extends BaseRepository
             $product->type              = $input['type'];
             $product->country_origin    = isset($input['country_origin']) ? $input['country_origin'] : '';
 
-            $shopLinks = [];
-
-            if(isset($input['amazon_link']))
-            {
-                $shopLinks['amazon_link'] = $input['amazon_link'];
-            }
-
-            if(isset($input['ebay_link']))
-            {
-                $shopLinks['ebay_link'] = $input['ebay_link'];
-            }
-
-            if(isset($input['other_link']))
-            {
-                $shopLinks['other_link'] = $input['other_link'];
-            }
-
-            $product->shop = json_encode($shopLinks);
+            $product->shop = json_encode($input['shop']);
 
             if ($product->save()) {
 
@@ -297,24 +313,42 @@ class ProductRepository extends BaseRepository
             $product->country_origin = $input['country_origin'];
         }
 
-        $shopLinks = [];
+        $shopOriginal = json_decode($product->shop, true);
 
-        if(isset($input['amazon_link']))
+        $basePath = public_path("stores");
+
+        if(isset($input['custom_logo1']) && is_object($input['custom_logo1']))
         {
-            $shopLinks['amazon_link'] = $input['amazon_link'];
+            $imageName = time().$input['custom_logo1']->getClientOriginalName();
+
+            $input['custom_logo1']->move(
+                $basePath, $imageName
+            );
+
+            $input['custom_logo1'] = $imageName;
         }
 
-        if(isset($input['ebay_link']))
+        if(isset($input['custom_logo2']) && is_object($input['custom_logo2']))
         {
-            $shopLinks['ebay_link'] = $input['ebay_link'];
+            $imageName = time().$input['custom_logo2']->getClientOriginalName();
+
+            $input['custom_logo2']->move(
+                $basePath, $imageName
+            );
+
+            $input['custom_logo2'] = $imageName;
         }
 
-        if(isset($input['other_link']))
-        {
-            $shopLinks['other_link'] = $input['other_link'];
-        }
+        $input['shop'] = [
+            'amazon_link'   => isset($input['amazon_link']) ? $input['amazon_link'] : '',
+            'ebay_link'     => isset($input['ebay_link']) ? $input['ebay_link'] : '',
+            'custom_link1'  => isset($input['custom_link1']) ? $input['custom_link1'] : $shopOriginal['custom_link1'],
+            'custom_logo1'  => isset($input['custom_logo1']) ? $input['custom_logo1'] : $shopOriginal['custom_logo1'],
+            'custom_link2'  => isset($input['custom_link2']) ? $input['custom_link2'] : $shopOriginal['custom_link2'],
+            'custom_logo2'  => isset($input['custom_logo2']) ? $input['custom_logo2'] : $shopOriginal['custom_logo2']
+        ];
 
-        $product->shop = json_encode($shopLinks);
+        $product->shop = json_encode($input['shop']);
 
         DB::transaction(function () use ($product, $input, $sizeArray) {
             if ($product->save()) {

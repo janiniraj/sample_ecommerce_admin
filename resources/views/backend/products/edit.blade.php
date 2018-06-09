@@ -217,13 +217,45 @@
                         {{ Form::text('ebay_link', isset($shop['ebay_link']) ? $shop['ebay_link'] : '', ['class' => 'form-control', 'placeholder' => 'Product Ebay Link', 'rows' => 3]) }}
                     </div><!--col-lg-10-->
                 </div><!--form control-->
+
                 <div class="form-group">
-                    {{ Form::label('other_link', 'Other Link', ['class' => 'col-lg-2 control-label']) }}
+                    {{ Form::label('custom_link1', 'Custom Link 1', ['class' => 'col-lg-2 control-label required']) }}
 
                     <div class="col-lg-10">
-                        {{ Form::text('other_link', isset($shop['other_link']) ? $shop['other_link'] : '', ['class' => 'form-control', 'placeholder' => 'Product Other Store Link', 'rows' => 3]) }}
+                        {{ Form::text('custom_link1', isset($shop) && isset($shop['custom_link1']) ? $shop['custom_link1'] : null, ['class' => 'form-control box-size', 'placeholder' => 'Custom Link 1']) }}
                     </div><!--col-lg-10-->
-                </div><!--form control--> 
+                </div><!--form control-->
+
+                <div class="form-group">
+                    {{ Form::label('custom_logo1', 'Custom Logo 1', ['class' => 'col-lg-2 control-label required']) }}
+
+                    <div class="col-lg-10">
+                        @if(isset($shop) && isset($shop['custom_logo1']) && $shop['custom_logo1'])
+                            <img class="logo-store image-display1" src="<?php echo url('/').'/stores/'.$shop['custom_logo1']; ?>" />
+                        @endif
+                        {{ Form::file('custom_logo1', $attributes = array('class' => 'image1', 'accept' => "image/x-png,image/gif,image/jpeg")) }}
+                    </div><!--col-lg-10-->
+                </div><!--form control-->
+
+                <div class="form-group">
+                    {{ Form::label('custom_link2', 'Custom Link 2', ['class' => 'col-lg-2 control-label required']) }}
+
+                    <div class="col-lg-10">
+                        {{ Form::text('custom_link2', isset($shop) && isset($shop['custom_link2']) ? $shop['custom_link2'] : null, ['class' => 'form-control box-size', 'placeholder' => 'Custom Link 2']) }}
+                    </div><!--col-lg-10-->
+                </div><!--form control-->
+
+                <div class="form-group">
+                    {{ Form::label('custom_logo2', 'Custom Logo 2', ['class' => 'col-lg-2 control-label required']) }}
+
+                    <div class="col-lg-10">
+                        @if(isset($shop) && isset($shop['custom_logo2']) && $shop['custom_logo2'])
+                            <img class="logo-store image-display2" src="<?php echo url('/').'/stores/'.$shop['custom_logo2']; ?>" />
+                        @endif
+                        {{ Form::file('custom_logo2', $attributes = array('class' => 'image2', 'accept' => "image/x-png,image/gif,image/jpeg")) }}
+                    </div><!--col-lg-10-->
+                </div><!--form control-->
+
             </div><!-- /.box-body -->
         </div><!--box-->
 
@@ -242,6 +274,12 @@
         </div><!--box-->
 
     {{ Form::close() }}
+    <style type="text/css">
+        img.logo-store {
+            max-height: 50px;
+        }
+    </style>
+
 @endsection
 
 @section('after-scripts')
@@ -311,6 +349,35 @@
 
             $(".close-image").on('click', function(e){
                 $(this).closest('.single-image-display').remove();
+            });
+
+            $(".image1").on('change', function ()
+            {
+                var input = this;
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('.image-display1')
+                            .attr('src', e.target.result).removeClass('hidden');
+                    };
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            });
+            $(".image2").on('change', function ()
+            {
+                var input = this;
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('.image-display2')
+                            .attr('src', e.target.result).removeClass('hidden');
+                    };
+
+                    reader.readAsDataURL(input.files[0]);
+                }
             });
         });
     </script>

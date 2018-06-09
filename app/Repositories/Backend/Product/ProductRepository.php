@@ -137,7 +137,7 @@ class ProductRepository extends BaseRepository
             $product->material_id       = $input['material_id'];
             $product->weave_id          = $input['weave_id'];
             $product->color_id          = $input['color_id'];
-            $product->border_color_id   = $input['border_color_id'];
+            $product->border_color_id   = isset($input['border_color_id']) ? $input['border_color_id'] : '';
             $product->shape             = $input['shape'];
             /*$product->length            = $input['length'];
             $product->width             = $input['width'];*/

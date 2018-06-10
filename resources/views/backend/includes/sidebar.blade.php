@@ -101,84 +101,123 @@
                 </ul>
             </li>
             
+            @if(access()->hasPermission('category-management'))
             <li class="{{ active_class(Active::checkUriPattern('admin/categories*')) }}">
                 <a href="{{ route('admin.categories.index') }}">
                     <i class="fa fa-commenting"></i>
                     <span>Category Management</span>
                 </a>
             </li>
+            @endif
+
+            @if(access()->hasPermission('subcategory-management'))
             <li class="{{ active_class(Active::checkUriPattern('admin/subcategories*')) }}">
                 <a href="{{ route('admin.subcategories.index') }}">
                     <i class="fa fa-commenting"></i>
                     <span>Collection</span>
                 </a>
             </li>
+            @endif
+
+            @if(access()->hasPermission('slide-management'))
             <li class="{{ active_class(Active::checkUriPattern('admin/home-slider')) }}">
                 <a href="{{ route('admin.home-slider.index') }}">
                     <i class="fa fa-dashboard"></i>
                     <span>Slide Management</span>
                 </a>
             </li>
+            @endif
+
+            @if(access()->hasPermission('style-management'))
             <li class="{{ active_class(Active::checkUriPattern('admin/styles')) }}">
                 <a href="{{ route('admin.styles.index') }}">
                     <i class="fa fa-adjust"></i>
                     <span>Style Management</span>
                 </a>
             </li>
+            @endif
+
+            @if(access()->hasPermission('material-management'))
             <li class="{{ active_class(Active::checkUriPattern('admin/materials')) }}">
                 <a href="{{ route('admin.materials.index') }}">
                     <i class="fa fa-delicious"></i>
                     <span>Material Management</span>
                 </a>
             </li>
+            @endif
+
+            @if(access()->hasPermission('weaves-management'))
             <li class="{{ active_class(Active::checkUriPattern('admin/weaves')) }}">
                 <a href="{{ route('admin.weaves.index') }}">
                     <i class="fa fa-clone"></i>
                     <span>Weaves Management</span>
                 </a>
             </li>
+            @endif
+
+            @if(access()->hasPermission('color-management'))
             <li class="{{ active_class(Active::checkUriPattern('admin/colors')) }}">
                 <a href="{{ route('admin.colors.index') }}">
                     <i class="fa fa-css3"></i>
                     <span>Color Management</span>
                 </a>
             </li>
+            @endif
+
+            @if(access()->hasPermission('page-management'))
             <li class="{{ active_class(Active::checkUriPattern('admin/pages')) }}">
                 <a href="{{ route('admin.pages.index') }}">
                     <i class="fa fa-file"></i>
                     <span>Page Management</span>
                 </a>
             </li>
+            @endif
+
+            @if(access()->hasPermission('review-management'))
             <li class="{{ active_class(Active::checkUriPattern('admin/reviews*')) }}">
                 <a href="{{ route('admin.reviews.index') }}">
                     <i class="fa fa-star"></i>
                     <span>Review Management</span>
                 </a>
             </li>
+            @endif
+
+            @if(access()->hasPermission('setting'))
             <li class="{{ active_class(Active::checkUriPattern('admin/settings*')) }}">
                 <a href="{{ route('admin.settings.index') }}">
                     <i class="fa fa-dashboard"></i>
                     <span>Settings</span>
                 </a>
             </li>
-            <li class="{{ active_class(Active::checkUriPattern('admin/reviews*')) }}">
+            @endif
+
+            @if(access()->hasPermission('subscription-management'))
+            <li class="{{ active_class(Active::checkUriPattern('admin/subscriptions*')) }}">
                 <a href="{{ route('admin.subscriptions.index') }}">
                     <i class="fa fa-paper-plane"></i>
                     <span>Subscription Management</span>
                 </a>
             </li>
+            @endif
+
+            @if(access()->hasPermission('store-management'))
             <li class="{{ active_class(Active::checkUriPattern('admin/stores*')) }}">
                 <a href="{{ route('admin.stores.index') }}">
                     <i class="fa fa-home"></i>
                     <span>Store Management</span>
                 </a>
             </li>
+            @endif
+
+            @if(access()->hasPermission('mailinglists-management'))
             <li class="{{ active_class(Active::checkUriPattern('admin/mailinglists*')) }}">
                 <a href="{{ route('admin.mailinglists.index') }}">
                     <i class="fa fa-envelope"></i>
                     <span>Mailing Lists Management</span>
                 </a>
             </li>
+            @endif
+
         </ul><!-- /.sidebar-menu -->
     </section><!-- /.sidebar -->
 </aside>

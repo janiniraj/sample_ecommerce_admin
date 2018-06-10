@@ -16,7 +16,7 @@ class EditCategoriesRequest extends Request
      */
     public function authorize()
     {
-        return true;
+        return access()->hasPermission('category-management');;
     }
 
     /**

@@ -16,7 +16,7 @@ class DeleteRequest extends Request
      */
     public function authorize()
     {
-        return true;
+        return access()->hasPermission('mailinglists-management');
     }
 
     /**

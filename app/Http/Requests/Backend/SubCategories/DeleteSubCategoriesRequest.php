@@ -16,7 +16,7 @@ class DeleteSubCategoriesRequest extends Request
      */
     public function authorize()
     {
-        return access()->allow('delete-subcategory');
+        return access()->hasPermission('subcategory-management');
     }
 
     /**

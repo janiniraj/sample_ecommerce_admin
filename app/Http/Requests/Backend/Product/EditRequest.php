@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Backend\Setting;
+namespace App\Http\Requests\Backend\Product;
 
 use App\Http\Requests\Request;
 
@@ -16,7 +16,7 @@ class EditRequest extends Request
      */
     public function authorize()
     {
-        return access()->hasPermission('setting');
+        return access()->hasPermission('product-management');
     }
 
     /**

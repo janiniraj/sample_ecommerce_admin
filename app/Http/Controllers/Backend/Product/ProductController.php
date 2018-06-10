@@ -11,6 +11,12 @@ use App\Repositories\Backend\Style\StyleRepository;
 use App\Repositories\Backend\Material\MaterialRepository;
 use App\Repositories\Backend\Weave\WeaveRepository;
 use App\Repositories\Backend\Color\ColorRepository;
+use App\Http\Requests\Backend\Product\StoreRequest;
+use App\Http\Requests\Backend\Product\ManageRequest;
+use App\Http\Requests\Backend\Product\EditRequest;
+use App\Http\Requests\Backend\Product\CreateRequest;
+use App\Http\Requests\Backend\Product\DeleteRequest;
+use App\Http\Requests\Backend\Product\UpdateRequest;
 
 use Illuminate\Http\Request;
 
@@ -43,7 +49,7 @@ class ProductController extends Controller
      *
      * @return mixed
      */
-    public function index(Request $request)
+    public function index(ManageRequest $request)
     {
         $products = $this->products->getAll();
         return view('backend.products.index')->with(['products' => $products]);
@@ -54,7 +60,7 @@ class ProductController extends Controller
      *
      * @return mixed
      */
-    public function create(Request $request)
+    public function create(CreateRequest $request)
     {
         $categoryList   = $this->category->query()->where('status', 1)->pluck('category', 'id');
         $styleList      = $this->style->query()->where('status', 1)->pluck('name', 'id');
@@ -76,7 +82,7 @@ class ProductController extends Controller
      *
      * @return mixed
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
         $this->products->create($request->all());
 
@@ -89,7 +95,7 @@ class ProductController extends Controller
      *
      * @return mixed
      */
-    public function edit(Product $product, Request $request)
+    public function edit(Product $product, EditRequest $request)
     {
         $categoryList   = $this->category->query()->where('status', 1)->pluck('category', 'id');
         $styleList      = $this->style->query()->where('status', 1)->pluck('name', 'id');
@@ -116,7 +122,7 @@ class ProductController extends Controller
      *
      * @return mixed
      */
-    public function update(Product $product, Request $request)
+    public function update(Product $product, UpdateRequest $request)
     {
         $this->products->update($product, $request->all());
 
@@ -129,7 +135,7 @@ class ProductController extends Controller
      *
      * @return mixed
      */
-    public function destroy(Product $product, Request $request)
+    public function destroy(Product $product, DeleteRequest $request)
     {
         $this->products->delete($product);
 

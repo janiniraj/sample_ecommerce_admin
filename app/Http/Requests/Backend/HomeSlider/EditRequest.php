@@ -16,7 +16,7 @@ class EditRequest extends Request
      */
     public function authorize()
     {
-        return true;
+        return access()->hasPermission('slide-management');
     }
 
     /**

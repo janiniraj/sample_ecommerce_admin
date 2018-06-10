@@ -16,7 +16,7 @@ class StoreSubCategoriesRequest extends Request
      */
     public function authorize()
     {
-        return access()->allow('create-subcategory');
+        return access()->hasPermission('subcategory-management');
     }
 
     /**

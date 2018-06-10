@@ -16,7 +16,7 @@ class EditSubCategoriesRequest extends Request
      */
     public function authorize()
     {
-        return access()->allow('edit-subcategory');
+        return access()->hasPermission('subcategory-management');
     }
 
     /**

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Requests\Backend\Setting;
+namespace App\Http\Requests\Backend\Product;
 
 use App\Http\Requests\Request;
 
 /**
- * Class EditRequest.
+ * Class DeleteRequest.
  */
-class EditRequest extends Request
+class DeleteRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -16,7 +16,7 @@ class EditRequest extends Request
      */
     public function authorize()
     {
-        return access()->hasPermission('setting');
+        return access()->hasPermission('product-management');
     }
 
     /**

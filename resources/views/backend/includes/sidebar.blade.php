@@ -36,12 +36,14 @@
                 </a>
             </li>
 
+            @if(access()->hasPermission('product-management'))
             <li class="{{ active_class(Active::checkUriPattern('admin/product')) }}">
                 <a href="{{ route('admin.product.index') }}">
                     <i class="fa fa-dashboard"></i>
                     <span>Product Management</span>
                 </a>
             </li>
+            @endif
 
             @role(1)
             <li class="{{ active_class(Active::checkUriPattern('admin/access/*')) }} treeview">

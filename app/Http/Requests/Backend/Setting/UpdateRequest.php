@@ -16,7 +16,7 @@ class UpdateRequest extends Request
      */
     public function authorize()
     {
-        return true;
+        return access()->hasPermission('setting');
     }
 
     /**

@@ -16,7 +16,7 @@ class ManageSubCategoriesRequest extends Request
      */
     public function authorize()
     {
-        return access()->allow('view-subcategory');
+        return access()->hasPermission('subcategory-management');
     }
 
     /**
